@@ -187,7 +187,7 @@ foreach ($bot->parseEvents() as $event) {
 			$messages = new MutiMessage();
 			$replyArr = Array(
 				$messages->text("你好哦，我是擲骰機器狗。\n請輸入「骰子狗說明」獲得使用說明。"),
-				$messages->sticker(1,2),
+				$messages->sticker(4,631),
 				$messages->text("建議使用手機界面，可以更簡單的選取說明哦。")
 			);
 			

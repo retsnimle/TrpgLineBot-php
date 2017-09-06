@@ -113,25 +113,25 @@ function CoC7th($inputStr){
             else
               if(chack/5 < 50){$ReStr = $ReStr + "\n（若要求極限成功則為大失敗）";}
           }  
-	/*
-	if (ReStr.match("啊！大失敗")!= null){
-	let fumbleImgArr =["https://i.imgur.com/ju9UQzA.png","https://i.imgur.com/M3meWXu.png","https://i.imgur.com/nWxGZyz.png","https://i.imgur.com/cq0WGxH.png"];
-	let fumbleImg = fumbleImgArr[Dice(fumbleImgArr.length)-1];
-	let fumble = [
-			{
-			type: "text",
-			text: ReStr
-			},
-			{
-			type: "image",
-			originalContentUrl: fumbleImg,
-			previewImageUrl: fumbleImg			
-			}			
-		]
-		SendMsg(rplyToken, fumble);
-		return undefined;
+		  
+		  
+	if(stristr(strtolower($inputStr),"啊！大失敗") != false){
+		$fumbleImgArr =Array(
+			"https://i.imgur.com/ju9UQzA.png",
+			"https://i.imgur.com/M3meWXu.png",
+			"https://i.imgur.com/nWxGZyz.png",
+			"https://i.imgur.com/cq0WGxH.png");
+			
+		$messages = new MutiMessage();
+		
+		$replyArr = Array(
+			$messages->text($ReStr),
+			$messages->img($fumbleImgArr[Dice(count($fumbleImgArr))-1])
+		);
+		
+		return $messages->send($replyArr);
 	}
-	
+	/*
 	if (ReStr.match("恭喜！大成功")!= null){
 	let CriImgArr =["https://i.imgur.com/jevHZqa.png"];
 	let CriImg = CriImgArr[Dice(CriImgArr.length)-1];

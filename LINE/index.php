@@ -169,8 +169,26 @@ foreach ($bot->parseEvents() as $event) {
 			error_log("被加入聊天室");
 			$messages = new MutiMessage();
 			$replyArr = Array(
-				$messages->text("大家好，我是擲骰機器人鴨霸獸。\n請輸入「鴨霸獸說明」獲得使用說明。"),
+				$messages->text("大家好，我是擲骰機器狗。\n請輸入「骰子狗說明」獲得使用說明～"),
 				$messages->sticker(1,2)
+			);
+			
+			$bot->replyMessage(
+				array(
+				'replyToken' => $event['replyToken'],
+				'messages' => $replyArr
+				)
+			);		
+			break;
+			
+		//被加入好友的動作
+		case 'follow':
+			error_log("被加入好友");
+			$messages = new MutiMessage();
+			$replyArr = Array(
+				$messages->text("你好哦，我是擲骰機器狗。\n請輸入「骰子狗說明」獲得使用說明。"),
+				$messages->sticker(1,2),
+				$messages->text("建議使用手機界面，可以更簡單的選取說明哦。")
 			);
 			
 			$bot->replyMessage(
@@ -189,7 +207,7 @@ foreach ($bot->parseEvents() as $event) {
 
 //這是基本判斷式
 function parseInput ($inputStr){
-	$replyKeyword = '鴨霸獸';
+	$replyKeyword = '骰子狗';
 	error_log("訊息【".$inputStr."】進入parseInput");
 
 	//preg_match ( "/A/" , B)。A是要比對的關鍵字（正則），B是被比對的字串
@@ -203,11 +221,8 @@ function parseInput ($inputStr){
 		return pbta($inputStr);
 		
 	}else if(stristr($inputStr,$replyKeyword) != false){
-		return KeyWordReply($inputStr);
-		
-	}else if(stristr($inputStr,'鴨霸幫入幫測驗') != false){
-		return Yababang($inputStr);
-		
+		return KeyWordReply($inputStr);	
+
 	}else if(stristr(strtolower($inputStr),".jpg") != false){
 		return SendImg($inputStr);
 		

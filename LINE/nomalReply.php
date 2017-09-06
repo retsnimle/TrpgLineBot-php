@@ -4,7 +4,7 @@ function KeyWordReply($inputStr) {
 	$inputStr = strtolower($inputStr);
 	
 	//讀入manual.json
-	$handle = fopen("./manual.json","r");	
+	$handle = fopen("./ReplyJson/manual.json","r");	
 	$content = "";
 	while (!feof($handle)) {
 		$content .= fread($handle, 10000);
@@ -35,20 +35,18 @@ function KeyWordReply($inputStr) {
 		
 		$rplyArr = explode(' ',$inputStr);
     
-		if (count($rplyArr) == 1) {return buildTextMessage('靠腰喔要我選也把選項格式打好好不好，真的想被淨灘嗎？');}
+		if (count($rplyArr) == 1) {return buildTextMessage('選擇的格式不對啦！');}
     
 		$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		
 		if(stristr($Answer, '選') != false||
 		stristr($Answer, '決定') != false||
 		stristr($Answer, '挑') != false||
-		stristr($Answer, '鴨霸獸') != false) {
-			$rplyArr = Array('幹，你不會自己決定嗎',
+		stristr($Answer, '骰子狗') != false) {
+			$rplyArr = Array(
                  '人生是掌握在自己手裡的',
-                 '隨便哪個都好啦',
-                 '連這種東西都不能決定，是不是不太應該啊',
-                 '沒事別叫我選東西好嗎，難道你們都是天秤座嗎（戰）',
-                 '不要把這種東西交給機器人決定比較好吧');
+                 '每個都很好哦',
+                 '不要把這麼重要的事情交給骰子狗決定比較好吧');
 		$Answer = $rplyArr[Dice(count($rplyArr))-1];
 		}
     return buildTextMessage('我想想喔……我覺得，'.$Answer.'。');
@@ -60,10 +58,11 @@ function KeyWordReply($inputStr) {
 		return buildTextMessage('運勢喔…我覺得，'.$rplyArr[Dice(count($rplyArr))-1].'吧。');
 	} 
 	
-    //以下是幫眾限定的垃圾話
+    //以下是關鍵字回覆功能，檔案在 /ReplyJson/textReply.json
+	//你也可以直接把json檔案在自己的dropboox之類的地方，用外聯的方式來鏈接
 	
 	//讀入json
-	$handle = fopen("https://www.dropbox.com/s/yfja6psf977i7hi/textReply.json?dl=1","r");	
+	$handle = fopen("./ReplyJson/textReply.json","r");	
 	$content = "";
 	while (!feof($handle)) {
 		$content .= fread($handle, 10000);
@@ -88,18 +87,18 @@ function KeyWordReply($inputStr) {
 	
 }
 
+//圖片關鍵字功能
 function SendImg($inputStr) {
 	
+	//以下是關鍵字回覆功能，檔案在 /ReplyJson/imgReply.json
 	//讀入json
-	$handle = fopen("https://www.dropbox.com/s/mccm8n29ul5xkr5/Imgs.json?dl=1","r");	
+	$handle = fopen("./ReplyJson/imgReply.json","r");	
 	$content = "";
 	while (!feof($handle)) {
 		$content .= fread($handle, 10000);
 		}
 	fclose($handle);	
-	$content = json_decode($content, true);
-	
-	
+	$content = json_decode($content, true);	
 	
 	foreach($content as $ImgChack){
 		foreach($ImgChack['chack'] as $chack){
@@ -112,60 +111,4 @@ function SendImg($inputStr) {
 	}
 	
 	return null;
-}
-
-function Yababang($inputStr) {
-	$rplyArr = explode(' ',$inputStr);
-	$pl = $rplyArr[1];
-	if (count($rplyArr) == 1) {return buildTextMessage('想要挑戰入幫測驗，就把格式打好啊幹！');}
-	if(stristr($pl, 'yabaso') != false||
-		stristr($pl, '巴獸') != false||
-		stristr($pl, '鴨巴') != false||
-		stristr($pl, '幫主') != false||
-		stristr($pl, '泰瑞') != false||
-		stristr($pl, '鴨霸獸') != false||
-		stristr($pl, '鴨嘴獸') != false) 
-		{return buildTextMessage('幫主好！幹，那邊那個菜比巴，看到幫主不會敬禮啊，想被淨灘是不是？！');}
-  
-	//關卡設定
-  	//讀入json
-	$handle = fopen("https://www.dropbox.com/s/cd6u3ljpsril7if/yababang.json?dl=1","r");	
-	$content = "";
-	while (!feof($handle)) {
-		$content .= fread($handle, 10000);
-		}
-	fclose($handle);	
-	
-	$challenge = json_decode($content, true);
-
-  
-  
-  //開始迴圈部分
-  
-	$stage = 1;
-	$DeadOrNot = 0;
-	$pinch = $challenge[0]['pinch'] + $challenge[0]['pinchRan'];
-	$reply = '本次入幫測驗挑戰者是【'.$pl.'】，鴨霸幫萬歲！';
-  
-	for (; $DeadOrNot == 0; $stage++){
-		$reply = $reply."\n\n================\n【".$pl.'挑戰第'.$stage."關】\n" ;
-    
-		if(Dice(100) <= $pinch){
-		$reply = $reply.$challenge[$stage]['good'][Dice( count($challenge[$stage]['good']))-1];
-		$pinch = $pinch - Dice($challenge[0]['pinchDe']);
-		}
-		else {
-		$reply = $reply.$challenge[$stage]['bad'][Dice( count($challenge[$stage]['bad']))-1];
-		$DeadOrNot = 1;
-		$reply = $reply."\n\n================\n勝敗乃兵家常事，大俠請重新來過吧。\n或者你可以直接月付1999加入白銀幫眾。";
-		}
-    
-    if ($stage ==5 && $DeadOrNot == 0) {
-    $DeadOrNot = 2 ;    
-    }
-  }
-  
-  if ($DeadOrNot == 2) $reply = $reply."\n\n================\n恭喜【".$pl."】成功存活，成為新一代的鴨霸幫幫眾。\n請到隔壁的櫃檯繳納會費，然後期待下一次淨灘的時候你還可以存活下來。";
-      
-  return buildTextMessage($reply);
 }

@@ -141,17 +141,17 @@ foreach ($bot->parseEvents() as $event) {
                 	if($m_message!="")
                 	{
 						error_log("收到訊息：".$m_message);
-						$messages = parseInput($m_message);
+						//$messages = parseInput($m_message);
 						
-						if ($messages == null) {
-							error_log("無觸發");
-							break;
-						}
+						//if ($messages == null) {
+						//	error_log("無觸發");
+						//	break;
+						//}
 						
 						$bot->replyMessage(
 							array(
 							'replyToken' => $event['replyToken'],
-							'messages' => $messages
+							'messages' => 'hi' //$messages
 							)
 						);
 						

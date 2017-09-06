@@ -118,7 +118,6 @@ function CoC7th($inputStr){
 	if(stristr(strtolower($ReStr),"啊！大失敗") != false){
 		$fumbleImgArr =Array(
 			"https://i.imgur.com/ju9UQzA.png",
-			"https://i.imgur.com/M3meWXu.png",
 			"https://i.imgur.com/nWxGZyz.png",
 			"https://i.imgur.com/cq0WGxH.png");
 			
@@ -131,25 +130,21 @@ function CoC7th($inputStr){
 		
 		return $messages->send($replyArr);
 	}
-	/*
-	if (ReStr.match("恭喜！大成功")!= null){
-	let CriImgArr =["https://i.imgur.com/jevHZqa.png"];
-	let CriImg = CriImgArr[Dice(CriImgArr.length)-1];
-	let Cri = [
-			{
-			type: "text",
-			text: ReStr
-			},
-			{
-			type: "image",
-			originalContentUrl: CriImg,
-			previewImageUrl: CriImg			
-			}			
-		]
-		SendMsg(rplyToken, Cri);
-		return undefined;
+	
+	if(stristr(strtolower($ReStr),"恭喜！大成功") != false){
+		$CriImgArr =Array(
+			"https://i.imgur.com/jevHZqa.png");
+			
+		$messages = new MutiMessage();
+		
+		$replyArr = Array(
+			$messages->text($ReStr),
+			$messages->img($CriImgArr[Dice(count($CriImgArr))-1])
+		);
+		
+		return $messages->send($replyArr);
 	}
-	*/
+
 	
           return buildTextMessage($ReStr);	
 }

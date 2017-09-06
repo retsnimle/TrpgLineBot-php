@@ -18,10 +18,10 @@
 
 require_once('./LINEBotTiny.php');
 
-//require_once('./nomalReply.php');
-//require_once('./Dice/Dice_CoC7th.php');
-//require_once('./Dice/Dice_nomalDice.php');
-//require_once('./Dice/Dice_pbta.php');
+require_once('./nomalReply.php');
+require_once('./Dice/Dice_CoC7th.php');
+require_once('./Dice/Dice_nomalDice.php');
+require_once('./Dice/Dice_pbta.php');
 
 
 //主要的全域變數，只有簡易的API，覺得難過香菇
@@ -141,17 +141,18 @@ foreach ($bot->parseEvents() as $event) {
                 	if($m_message!="")
                 	{
 						error_log("收到訊息：".$m_message);
-						//$messages = parseInput($m_message);
+						error_log("replyToken：".$event['replyToken']);
+						$messages = parseInput($m_message);
 						
-						//if ($messages == null) {
-						//	error_log("無觸發");
-						//	break;
-						//}
+						if ($messages == null) {
+							error_log("無觸發");
+							break;
+						}
 						
 						$bot->replyMessage(
 							array(
 							'replyToken' => $event['replyToken'],
-							'messages' => 'hi' //$messages
+							'messages' => $messages
 							)
 						);
 						
@@ -185,7 +186,7 @@ foreach ($bot->parseEvents() as $event) {
             break;
     }
 };
-/*
+
 //這是基本判斷式
 function parseInput ($inputStr){
 	$replyKeyword = '鴨霸獸';
@@ -219,7 +220,7 @@ function parseInput ($inputStr){
 	return null;
 	}
 }
-*/
+
 
 function DvTest ($inputStr){
 	error_log("進入DvTest");

@@ -1,0 +1,14 @@
+{
+  "name": "TrpgLineBot-php",
+  "description": "簡單的、模組化的TrpgLineBot",
+  "repository": "https://github.com/retsnimle/TrpgLineBot-php.git",
+  "keywords": ["LineBot-php", "TRPG"],
+  "env": {
+    "LINE_CHANNEL_SECRET": {
+      "description": "LINE-Channel-Secret"
+    },
+    "LINE_CHANNEL_ACCESSTOKEN": {
+      "description": "LINE-Channel-Accesstoken"
+    }    
+  }
+}

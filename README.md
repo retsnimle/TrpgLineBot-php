@@ -3,9 +3,9 @@
 
 準備動作：
 --
-先申請好Line帳號（廢話）</br>
-先申請好Github帳號</br>
-先申請好Heroku帳號</br>
+* 先申請好Line帳號（廢話）</br>
+* 先申請好Github帳號</br>
+* 先申請好Heroku帳號</br>
 以下全部選擇用免費的服務就夠了，請不要手殘選到付費。
 </br></br></br>
 
@@ -46,7 +46,6 @@ Step3：將LineBot部署到Heroku
 
 * 你會看到這個</br>
 ![Heroku](http://i.imgur.com/sbCVOcW.jpg)</br></br></br>
-
 當然，先取一個App name，那底下兩個要在哪裡找呢，回到上個步驟的LINE Developers網頁</br></br></br></br>
 
 
@@ -61,7 +60,6 @@ Step4：取得Channel Access Token和Channel Secret
 * 再取得Channel Access Token，按右邊的按鈕</br>
 ![Channel Access Token](http://i.imgur.com/UJ4AQlJ.jpg)</br>
 把取得的字串複製到Step3的LINE_CHANNEL_ACCESSTOKEN</br></br>
-
 接著，按下Deploy app，等他跑完之後按下Manage App</br>
 距離部署完機器人只差一步啦！
 </br></br></br></br>
@@ -81,6 +79,15 @@ Step4：鏈接Line與Heroku
 ---
 * 按下Save。看到在 Webhook URL 旁邊有個 VERIFY 按鈕嗎，按下去。</br>
 如果出現 Success. 就表示你成功完成啦！</br>
-![Success](http://i.imgur.com/yjlpIh8.jpg)</br>
+![Success](http://i.imgur.com/yjlpIh8.jpg)</br></br></br>
 
+如何修改並上傳程式碼咧
+==
+回到Heroku網頁，點選上面的Deploy，你會看到四種配置程式碼的方法。</br>
+![Deploy](http://i.imgur.com/VVRpNLe.jpg)</br>
 
+我有很大的信心，就是如果你是會用第一種（Heroku Git）或是第四種（Container Registry）的人應該是不會看這種教學文啦……</br>
+所以我就不介紹了，絕、絕對不是我自己也不會的關係哦（眼神漂移）</br>
+
+以第二種（Github）來說的話，你可以綁定你的Github賬號——剛剛我們不是fork了一份程式碼回去嗎？把它連接上去，這樣你就可以在Github那邊修改你要的程式碼，再Deploy過來。</br>
+或是你可以使用第三種（Dropbox），當你鏈接之後，它會自動幫你把你剛剛上線的程式碼下載到你的dropbox裡面。你修改完之後再上來Deploy就好咯。</br>

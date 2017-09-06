@@ -115,7 +115,7 @@ function CoC7th($inputStr){
           }  
 		  
 		  
-	if(stristr(strtolower($inputStr),"啊！大失敗") != false){
+	if(stristr(strtolower($ReStr),"啊！大失敗") != false){
 		$fumbleImgArr =Array(
 			"https://i.imgur.com/ju9UQzA.png",
 			"https://i.imgur.com/M3meWXu.png",

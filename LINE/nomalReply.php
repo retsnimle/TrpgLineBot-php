@@ -118,64 +118,65 @@ function mobile($inputStr) {
 		error_log("手機版專用訊息 ");
 		if(stristr($inputStr, '系統說明mobile') != false){
 			
-			$message =
-			Array(
-				'type'=>'template',
-				'altText'=> '系統說明',
-				'template'=>
-					Array(
-					'type'=> 'carousel',
-					'columns'=> 
-							Array(
-								Array(
-									'title'=> '《CoC7th 克蘇魯的呼喚》',
-									'text'=> '本系統相關指令，關鍵字為 CC',
-									'actions'=> Array(
-										Array(
-											'type'=> 'postback',
-											'label'=> '系統指令說明',
-											'text'=> '鴨霸獸CC'
-										),
-										Array(
-											'type'=> 'postback',
-											'label'=> '獎懲骰範例',
-											'text'=> 'CC(2)<=50 獎勵骰示範'
-										),
-										Array(
-											'type'=> 'postback',
-											'label'=> '技能成長範例',
-											'text'=> 'CC>20 技能成長示範'
-										)
-									)
-								),
-								Array(
-									'title'=> '《PBTA系統》',
-									'text'=> '本系統相關指令，關鍵字為 pb',
-									'actions'=> Array(
-										Array(
-											'type'=> 'postback',
-											'label'=> '系統指令說明',
-											'text'=> '鴨霸獸pb'
-										),
-										Array(
-											'type'=> 'postback',
-											'label'=> '一般擲骰範例',
-											'text'=> 'pb 示範'
-										),
-										Array(
-											'type'=> 'postback',
-											'label'=> '調整值範例',
-											'text'=> 'pb+1 調整值示範'
-										)
+			$message ='
+			{
+				"type": "template",
+				"altText": "系統說明",
+				"template":
+					{
+					"type": "carousel",
+					"columns": 
+							[
+								{
+									"title": "《CoC7th 克蘇魯的呼喚》",
+									"text": "本系統相關指令，關鍵字為 CC",
+									"actions": [
+										{
+											"type": "postback",
+											"label": "系統指令說明",
+											"text": "鴨霸獸CC"
+										},
+										{
+											"type": "postback",
+											"label": "獎懲骰範例",
+											"text": "CC(2)<=50 獎勵骰示範"
+										},
+										{
+											"type": "postback",
+											"label": "技能成長範例",
+											"text": "CC>20 技能成長示範"
+										}
+									]
+								},
+								{
+									"title": "《PBTA系統》",
+									"text": "本系統相關指令，關鍵字為 pb",
+									"actions": [
+										{
+											"type": "postback",
+											"label": "系統指令說明",
+											"text": "鴨霸獸pb"
+										},
+										{
+											"type": "postback",
+											"label": "一般擲骰範例",
+											"text": "pb 示範"
+										},
+										{
+											"type": "postback",
+											"label": "調整值範例",
+											"text": "pb+1 調整值示範"
+										}
 						
-									)
-								)
-							)
-					)
-			);
-			
+									]
+								}
+							]
+					}
+			}';
+			$message = json_decode($message , true);
 			$send = new MutiMessage();
-			$message = Array($message);
-			return $send->send($message);
+			$replyArr = Array($message);
+			
+			return $send->send($replyArr );
 		}
 }

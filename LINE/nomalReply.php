@@ -115,6 +115,7 @@ function SendImg($inputStr) {
 
 //手機才看得到的訊息。
 function mobile($inputStr) { 
+		error_log("手機版專用訊息 ");
 		if(stristr($inputStr, '系統說明mobile') != false){
 			
 			$message ='

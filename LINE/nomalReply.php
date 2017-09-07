@@ -120,59 +120,58 @@ function mobile($inputStr) {
 			
 			$message ='
 			{
-				"type": "template",
-				"altText": "系統說明",
-				"template":
-					{
-					"type": "carousel",
-					"columns": 
-							[
-								{
-									"title": "《CoC7th 克蘇魯的呼喚》",
-									"text": "本系統相關指令，關鍵字為 CC",
-									"actions": [
-										{
-											"type": "postback",
-											"label": "系統指令說明",
-											"text": "鴨霸獸CC"
-										},
-										{
-											"type": "postback",
-											"label": "獎懲骰範例",
-											"text": "CC(2)<=50 獎勵骰示範"
-										},
-										{
-											"type": "postback",
-											"label": "技能成長範例",
-											"text": "CC>20 技能成長示範"
-										}
-									]
-								},
-								{
-									"title": "《PBTA系統》",
-									"text": "本系統相關指令，關鍵字為 pb",
-									"actions": [
-										{
-											"type": "postback",
-											"label": "系統指令說明",
-											"text": "鴨霸獸pb"
-										},
-										{
-											"type": "postback",
-											"label": "一般擲骰範例",
-											"text": "pb 示範"
-										},
-										{
-											"type": "postback",
-											"label": "調整值範例",
-											"text": "pb+1 調整值示範"
-										}
-						
-									]
-								}
-							]
-					}
-			}';
+  "type": "template",
+  "altText": "this is a carousel template",
+  "template": {
+      "type": "carousel",
+      "columns": [
+          {
+            "thumbnailImageUrl": "https://example.com/bot/images/item1.jpg",
+            "title": "this is menu",
+            "text": "description",
+            "actions": [
+                {
+                    "type": "postback",
+                    "label": "Buy",
+                    "data": "action=buy&itemid=111"
+                },
+                {
+                    "type": "postback",
+                    "label": "Add to cart",
+                    "data": "action=add&itemid=111"
+                },
+                {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "http://example.com/page/111"
+                }
+            ]
+          },
+          {
+            "thumbnailImageUrl": "https://example.com/bot/images/item2.jpg",
+            "title": "this is menu",
+            "text": "description",
+            "actions": [
+                {
+                    "type": "postback",
+                    "label": "Buy",
+                    "data": "action=buy&itemid=222"
+                },
+                {
+                    "type": "postback",
+                    "label": "Add to cart",
+                    "data": "action=add&itemid=222"
+                },
+                {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "http://example.com/page/222"
+                }
+            ]
+          }
+      ]
+  }
+}';
 			$message = json_decode($message , true);
 			$send = new MutiMessage();
 			$replyArr = Array($message);

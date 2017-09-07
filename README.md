@@ -66,7 +66,7 @@ Step4：取得Channel Access Token和Channel Secret
 
 
 
-Step4：鏈接Line與Heroku
+Step5：鏈接Line與Heroku
 --
 * 點選settings</br>
 ![setting](http://i.imgur.com/9fEMoVh.jpg)</br></br></br>
@@ -86,8 +86,21 @@ Step4：鏈接Line與Heroku
 回到Heroku網頁，點選上面的Deploy，你會看到四種配置程式碼的方法。</br>
 ![Deploy](http://i.imgur.com/VVRpNLe.jpg)</br>
 
-我有很大的信心，就是如果你是會用第一種（Heroku Git）或是第四種（Container Registry）的人應該是不會看這種教學文啦……</br>
-所以我就不介紹了，絕、絕對不是我自己也不會的關係哦（眼神漂移）</br>
+我猜想如果你是會用第一種（Heroku Git）或是第四種（Container Registry）的人，應該是不會看這種教學文～所以我就不介紹了～</br>
+絕、絕對不是我自己也不會的關係哦（眼神漂移）</br>
 
 以第二種（Github）來說的話，你可以綁定你的Github賬號——剛剛我們不是fork了一份程式碼回去嗎？把它連接上去，這樣你就可以在Github那邊修改你要的程式碼，再Deploy過來。</br>
-或是你可以使用第三種（Dropbox），當你鏈接之後，它會自動幫你把你剛剛上線的程式碼下載到你的dropbox裡面。你修改完之後再上來Deploy就好咯。</br>
+或是你可以使用第三種（Dropbox），當你鏈接之後，它會自動幫你把你剛剛上線的程式碼下載到你的dropbox裡面。你修改完之後再上來Deploy就好咯。</br></br></br>
+
+參考資料＆特別感謝
+==
+Chatbot 開發指南：使用 LINE Bot PHP SDK 打造問答型聊天機器人</br>
+[https://www.appcoda.com.tw/line-chatbot-sdk/](https://www.appcoda.com.tw/line-chatbot-sdk/)</br>
+
+http://www.chy.tw/2017/08/phpherokulinebot.html</br>
+[http://www.chy.tw/2017/08/phpherokulinebot.html](http://www.chy.tw/2017/08/phpherokulinebot.html)</br>
+
+感謝強者我同學ㄌㄖㄏ（LarryLo）在最開始開發鴨霸獸的協助</br>
+感謝悠子（victor324）開放的原始碼</br>
+
+願一切榮耀歸于　李孟儒

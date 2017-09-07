@@ -153,7 +153,7 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "系統指令說明",
-					"text": "鴨霸獸pb"
+					"text": "骰子狗pb"
 				},
 				{
 					"type": "message",
@@ -164,6 +164,28 @@ function mobile($inputStr) {
 					"type": "message",
 					"label": "調整值範例",
 					"text": "pb+1 調整值示範"
+				}
+						
+			]
+		},
+		{
+			"title": "《附加功能》",
+			"text": "附加功能相關指令，關鍵字為「骰子狗」以及 .jpg 和 (ry",
+			"actions": [
+				{
+					"type": "message",
+					"label": "附加功能指令說明",
+					"text": "骰子狗其他說明"
+				},
+				{
+					"type": "message",
+					"label": "隨機選擇範例",
+					"text": "骰子狗，請幫我選宵夜要吃 鹽酥雞 滷味 吃p吃，不准吃"
+				},
+				{
+					"type": "message",
+					"label": "圖片回應範例",
+					"text": "我覺得不行.jpg"
 				}
 						
 			]

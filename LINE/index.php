@@ -226,6 +226,9 @@ function parseInput ($inputStr){
 	}else if(stristr(strtolower($inputStr),".jpg") != false){
 		return SendImg($inputStr);
 		
+	}else if(stristr($inputStr,"mobile") != false){
+		return SendImg($inputStr);			
+		
 	}else if(preg_match ("/d/i", $inputStr) !=false){
 		return nomalDiceRoller($inputStr);
 	}

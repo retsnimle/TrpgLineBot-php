@@ -173,7 +173,8 @@ function mobile($inputStr) {
 					}
 			}';
 			$message = json_decode($message , true);
+			$send = new MutiMessage();
 			
-			return MutiMessage->send($message);
+			return $send->send($message);
 		}
 }

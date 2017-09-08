@@ -10,7 +10,7 @@
 </br></br></br>
 
 Step1：先把這個專案Fork回去
---
+
 * 到右上角的 ![Fork](http://i.imgur.com/g5VmzkC.jpg) 按鈕嗎，按下去。</br>
 把這個專案存到你的Github裡。
 </br></br></br></br>

@@ -17,6 +17,24 @@ function KeyWordReply($inputStr) {
 		return buildTextMessage($manual[0]['說明']);
 	}
 	
+	//更新日誌與公告，使用外聯檔案
+	//可以是為一個使用外聯檔案的範例
+	if(stristr($inputStr, '更新與公告') != false) {
+		
+		$file = fopen("https://www.dropbox.com/s/h9m9lfhj8pvlu8k/updated.txt?dl=1", "r");
+		$reply = '';
+
+		//輸出文本中所有的行，直到文件結束為止。
+		while(! feof($file))
+		{
+			$reply =  $reply.fgets($file)."\n";
+		}
+		//當讀出文件一行後，就在後面加上 <br> 讓html知道要換行
+		fclose($file);
+		
+		return buildTextMessage($reply);
+	}
+	
 			
 	foreach($manual as $systems){
 		foreach($systems['系統縮寫'] as $chack){

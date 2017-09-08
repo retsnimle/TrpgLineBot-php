@@ -100,7 +100,7 @@ Chatbot 開發指南：使用 LINE Bot PHP SDK 打造問答型聊天機器人</b
 http://www.chy.tw/2017/08/phpherokulinebot.html</br>
 [http://www.chy.tw/2017/08/phpherokulinebot.html](http://www.chy.tw/2017/08/phpherokulinebot.html)</br>
 
-感謝強者我同學ㄌㄖㄏ（LarryLo）在最開始開發鴨霸獸的協助</br>
+感謝強者我同學（LarryLo）在最開始開發鴨霸獸的協助</br>
 感謝悠子（victor324）開放的原始碼</br>
 
 願一切榮耀歸于　李孟儒

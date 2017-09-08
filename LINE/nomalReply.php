@@ -27,7 +27,7 @@ function KeyWordReply($inputStr) {
 		//輸出文本中所有的行，直到文件結束為止。
 		while(! feof($file))
 		{
-			$reply =  $reply.fgets($file)."\n";
+			$reply =  $reply.fgets($file);
 		}
 		//當讀出文件一行後，就在後面加上 <br> 讓html知道要換行
 		fclose($file);

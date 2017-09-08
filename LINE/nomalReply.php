@@ -104,7 +104,9 @@ function SendImg($inputStr) {
 		foreach($ImgChack['chack'] as $chack){
 			
 			if(stristr($inputStr, $chack) != false){
-			return buildImgMessage($ImgChack['img'][Dice(count($ImgChack['img'])-1)]);
+			$arrNum = Dice(count($ImgChack['img'])-1);
+			error_log("回復陣列第".$arrNum);
+			return buildImgMessage($ImgChack['img'][$arrNum]);
 			break;
 			}
 		}

@@ -195,7 +195,7 @@ function mobile($inputStr) {
 				{
 					"type": "message",
 					"label": "附加功能指令說明",
-					"text": "骰子狗其他說明"
+					"text": "骰子狗其他"
 				},
 				{
 					"type": "message",

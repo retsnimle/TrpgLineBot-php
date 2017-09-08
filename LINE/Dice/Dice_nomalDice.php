@@ -92,7 +92,7 @@ function DiceCal($inputStr){
   while(preg_match ("/\d+d\d+/i", $DiceToRoll ,$matches) != false) {
     $tempMatch = (String)$matches[0];    
     if (explode('d',$tempMatch)[0]>200){return Array('eqStr'=>'欸欸，不支援200D以上擲骰；哪個時候會骰到兩百次以上？想被淨灘嗎？');}
-    if (explode('d',$tempMatch)[1]==1 || explode('d',$tempMatch)[1]>500){return Array('不支援D1和超過D500的擲骰；想被淨灘嗎？');}
+    //if (explode('d',$tempMatch)[1]==1 || explode('d',$tempMatch)[1]>500){return Array('不支援D1和超過D500的擲骰；想被淨灘嗎？');}
     $DiceToRoll = preg_replace("/\d+d\d+/i" , RollDice($tempMatch) , $DiceToRoll,1);
   }
   

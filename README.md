@@ -1,4 +1,4 @@
-###骰子狗：開放原始碼的LINE骰子機器人
+# 骰子狗：開放原始碼的LINE骰子機器人
 
 關於骰子狗
 ==
@@ -15,7 +15,7 @@
 ==
 骰子狗的LineID是：@upl5593r  
 你也可以使用QR扣：  
-![QR](http://qr-official.line.me/L/7ypxYxqqft.png)  
+![QR](http://i.imgur.com/IpTpfij.png)  
 
 或是點這裡：<a href="https://line.me/R/ti/p/%40upl5593r"><img height="36" border="0" alt="加入好友" src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"></a>
 </br></br></br>
@@ -124,7 +124,7 @@ Step5：鏈接Line與Heroku
 Chatbot 開發指南：使用 LINE Bot PHP SDK 打造問答型聊天機器人</br>
 [https://www.appcoda.com.tw/line-chatbot-sdk/](https://www.appcoda.com.tw/line-chatbot-sdk/)</br>
 
-http://www.chy.tw/2017/08/phpherokulinebot.html</br>
+使用PHP+Heroku快速打造Linebot回話機器人</br>
 [http://www.chy.tw/2017/08/phpherokulinebot.html](http://www.chy.tw/2017/08/phpherokulinebot.html)</br>
 
 感謝強者我同學（LarryLo）在最開始開發鴨霸獸的協助</br>

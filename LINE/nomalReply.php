@@ -124,7 +124,13 @@ function SendImg($inputStr) {
 			if(stristr($inputStr, $chack) != false){
 			$arrNum = Dice(count($ImgChack['img']))-1;
 			error_log("回復陣列第".$arrNum);
-			return buildImgMessage($ImgChack['img'][$arrNum]);
+			
+			
+			$imgURL = $ImgChack['img'][$arrNum];
+			//LINE不支援非加密協定的http://，因此在這裡代換成https://
+			$imgURL = str_replace("http","https",$imgURL);
+
+			return buildImgMessage($imgURL);
 			break;
 			}
 		}

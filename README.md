@@ -119,6 +119,17 @@ Step5：鏈接Line與Heroku
 以第二種（Github）來說的話，你可以綁定你的Github賬號——剛剛我們不是fork了一份程式碼回去嗎？把它連接上去，這樣你就可以在Github那邊修改你要的程式碼，再Deploy過來。</br>
 或是你可以使用第三種（Dropbox），當你鏈接之後，它會自動幫你把你剛剛上線的程式碼下載到你的dropbox裡面。你修改完之後再上來Deploy就好咯。</br></br></br>
 
+
+原始碼解說
+==
+| 路徑 | 檔名 | 說明 |
+| ----- | ----- | ----- |
+| .\ | app.json | Heroku的設置文件，LINE_CHANNEL_SECRET 和 LINE_CHANNEL_ACCESSTOKEN的宣告就是在這裡達成的。 |
+| .\ | composer.json | php 語言特有的文件。php 語言相當古老且發展相當完整，因此有很多時候可以直接調用函數模組。這個文件就是在做這件事——但本機器人只用了最低限度的LineApi，而且已經包含在程式裡面了。因此這次 composer.json 沒有用到太多。 |
+| .\ | composer.lock | 執行 composer 產生的驗證文件。 |
+| .\ | README.md | 就是你現在看到的這個說明文件啦！ |
+| .\ | .gitattributes | git 的相關文件，解釋起來很複雜，而且這次用不到。不要理他就好。 |
+
 參考資料＆特別感謝
 ==
 Chatbot 開發指南：使用 LINE Bot PHP SDK 打造問答型聊天機器人</br>

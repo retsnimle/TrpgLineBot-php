@@ -1,4 +1,7 @@
 # 骰子狗：開放原始碼的LINE骰子機器人
+更新日誌
+==
+17/09/10 加入了各個檔案的說明。DvTest指令新增可以查閱目前有哪些關鍵字。
 
 關於骰子狗
 ==
@@ -120,7 +123,7 @@ Step5：鏈接Line與Heroku
 或是你可以使用第三種（Dropbox），當你鏈接之後，它會自動幫你把你剛剛上線的程式碼下載到你的dropbox裡面。你修改完之後再上來Deploy就好咯。</br></br></br>
 
 
-原始碼解說
+原始碼檔案用途解說
 ==
 | 路徑 | 檔名 | 說明 |
 | ----- | ----- | ----- |
@@ -129,6 +132,19 @@ Step5：鏈接Line與Heroku
 | .\ | composer.lock | 執行 composer 產生的驗證文件。 |
 | .\ | README.md | 就是你現在看到的這個說明文件啦！ |
 | .\ | .gitattributes | git 的相關文件，解釋起來很複雜，而且這次用不到。不要理他就好。 |
+| .\LINE\ | 資料夾 | 這個資料夾裡面放的是主要的程式碼。 |
+| .\LINE\ | index.php | 主程式，或說起動時會被要求執行的程式。骨幹的程式碼都在這裡喔。 |
+| .\LINE\ | LINEBotTiny.php | LINE的API，如名稱所見是簡易板。畢竟從SDK那邊下載的實在太肥大了，雖然主要只支援接收和傳輸訊息，但對這隻BOT來說已經綽綽有餘了。 |
+| .\LINE\ | nomalReply.php | 非骰組的程式碼。主要是「關鍵字」觸發指令的內容。 |
+| .\LINE\Dice\ | 資料夾 | 這個資料夾裡面放的是各系統的骰組。 |
+| .\LINE\Dice\ | Dice_nomalDice.php | 這是一般通用擲骰。 |
+| .\LINE\Dice\ | Dice_CoC7th.php | 這是克蘇魯的呼喚（7版）的骰子。 |
+| .\LINE\Dice\ | Dice_pbta.php | 這是pbta系列系統的骰子。 |
+| .\LINE\ReplyJson\ | 資料夾 | 這裡是放像是說明書，或是梗圖關鍵字之類的地方。其實也可以外連，我個人推薦外連。放在這裡只是給大家看看範例的json長什麼樣子。只要符合格式就可以正確讀取喔。 |
+| .\LINE\ReplyJson\ | manual.json | 骰子機器人的說明文件，集中在一起比較容易修改。 |
+| .\LINE\ReplyJson\ | textReply.json | 會針對關鍵字回應；之前的鴨霸獸裡面有很多靠北的關鍵字，之前是包在程式碼裡面，現在拉出來更好修改了。 |
+| .\LINE\ReplyJson\ | imgReply.json | 針對圖片關鍵字的回應。圖片要找地方上傳，我個人推薦的圖床是imgur。附帶一提LINE只吃加密連線的https，不過放心，它會自動幫你把http網址轉成https，很聰明的。 | </br></br></br>
+
 
 參考資料＆特別感謝
 ==

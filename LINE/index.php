@@ -242,6 +242,57 @@ function parseInput ($inputStr){
 
 function DvTest ($inputStr){
 	error_log("進入DvTest");
+	
+	if(preg_match ("/key|關鍵/i", $inputStr) !=false){
+	
+	//抓文字關鍵字
+	$reply = "《文字關鍵字列表》\n";
+	
+	//讀入json
+	$handle = fopen("./ReplyJson/textReply.json","r");	
+	$content = "";
+	while (!feof($handle)) {
+		$content .= fread($handle, 10000);
+	}
+	fclose($handle);	
+	$text = json_decode($content, true);
+	
+	foreach($text as $txtChack){
+		$reply = $reply."[";
+		foreach($txtChack['chack'] as $chack){
+			$reply = $reply . $chack ."、";
+		}
+		$reply = chop($reply,'、').']';
+		$reply = $reply."\n";
+	}	
+	
+	//抓圖片關鍵字
+	$reply = $reply."\n\n《圖片關鍵字列表》\n";
+	
+	//讀入json
+	$handle = fopen("./ReplyJson/imgReply.json","r");	
+	$content = "";
+	while (!feof($handle)) {
+		$content .= fread($handle, 10000);
+	}
+	fclose($handle);	
+	$img = json_decode($content, true);
+	
+	foreach($img as $imgChack){
+		$reply = $reply."[";
+		foreach($imgChack['chack'] as $chack){
+			$reply = $reply . $chack ."、";
+		}
+		$reply = chop($reply,'、').']';
+		$reply = $reply."\n";
+	}	
+	
+	
+	return buildTextMessage($reply);	
+	
+	}
+	
+	
 	if(preg_match ("/muti|複數|多重/i", $inputStr) !=false){
 	$testMessage = new MutiMessage();
 	$replyArr = Array(

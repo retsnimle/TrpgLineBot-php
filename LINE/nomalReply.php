@@ -128,7 +128,7 @@ function SendImg($inputStr) {
 			
 			$imgURL = $ImgChack['img'][$arrNum];
 			//LINE不支援非加密協定的http://，因此在這裡代換成https://
-			$imgURL = str_replace("http","https",$imgURL);
+			$imgURL = str_replace("http:","https:",$imgURL);
 
 			return buildImgMessage($imgURL);
 			break;

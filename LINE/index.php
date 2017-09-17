@@ -22,6 +22,7 @@ require_once('./nomalReply.php');
 require_once('./Dice/Dice_CoC7th.php');
 require_once('./Dice/Dice_nomalDice.php');
 require_once('./Dice/Dice_pbta.php');
+require_once('./Dice/Dice_bDice.php');
 
 
 //主要的全域變數，只有簡易的API，覺得難過香菇

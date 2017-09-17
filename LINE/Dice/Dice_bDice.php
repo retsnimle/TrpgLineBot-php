@@ -5,7 +5,7 @@ function bDice($inputStr){
 	
 	//先定義要輸出的Str
 //先把這個打出來，然後在過程中一點一點把它補上去，大部分的思路是這樣的。
-	$finalStr = "擴充擲骰：\n[";
+	$finalStr = "擴充擲骰：\n（";
 	$inputStr = strtolower((string)$inputStr);
 	
 	if(preg_match ("/\d+b\d+/i", $inputStr) == false||
@@ -17,6 +17,8 @@ function bDice($inputStr){
 	preg_match ("/\S+/i", $inputStr , $matches);
 	$DiceToRoll = $matches[0];
 	error_log("擷取第一部分");
+	
+	$finalStr = $finalStr.$DiceToRoll."）\n→[";
 	
 	if(preg_match ("/\d+b\d+/i", $DiceToRoll) == false||
 			preg_match ("/\Db|b\D/i", $DiceToRoll) != false||
@@ -41,7 +43,9 @@ function bDice($inputStr){
 	
 		$diceNum = explode('b',$tempMatch)[0];
 		$diceSid = explode('b',$tempMatch)[1];
-	
+		
+		if($diceNum >= 200 ){return buildTextMessage($finalStr."不支援200顆以上的擲骰。");}
+		
 		for ($i = 1; $i <= $diceNum; $i++) {
 			
 			$diceEnd = Dice($diceSid);

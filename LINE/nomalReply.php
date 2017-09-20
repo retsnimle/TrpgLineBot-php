@@ -92,7 +92,7 @@ function KeyWordReply($inputStr) {
 		foreach($txtChack['chack'] as $chack){
 	
 			if(stristr($inputStr, $chack) != false){
-			return buildTextMessage($txtChack['text'][Dice(count($txtChack['text'])-1)]);
+			return buildTextMessage($txtChack['text'][Dice(count($txtChack['text']))-1]);
 			break;
 			}
 		}

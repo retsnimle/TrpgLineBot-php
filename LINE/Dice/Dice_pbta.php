@@ -28,13 +28,13 @@ function pbta($inputStr){
     
 	
     if (eval("return (String)$CalStr;") >= 10){      
-      $finalStr="pbta擲骰：\n".$CalStr.'='.eval("return (String)$CalStr;").'，成功！';
+      $finalStr="pbta擲骰（2D6".$bonus."）：\n".$CalStr.'='.eval("return (String)$CalStr;").'，成功！';
       }
     else if (eval("return (String)$CalStr;") <= 6){
-      $finalStr="pbta擲骰：\n".$CalStr.'='.eval("return (String)$CalStr;").'，失敗。';
+      $finalStr="pbta擲骰（2D6".$bonus."）：\n".$CalStr.'='.eval("return (String)$CalStr;").'，失敗。';
       }    
     else {
-      $finalStr="pbta擲骰：\n".$CalStr.'='.eval("return (String)$CalStr;").'，部分成功。';
+      $finalStr="pbta擲骰（2D6".$bonus."）：\n".$CalStr.'='.eval("return (String)$CalStr;").'，部分成功。';
       }
  
 	return buildTextMessage($finalStr);	

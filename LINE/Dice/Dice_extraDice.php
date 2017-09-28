@@ -5,7 +5,7 @@ function bDice($inputStr){
 	
 	//先定義要輸出的Str
 //先把這個打出來，然後在過程中一點一點把它補上去，大部分的思路是這樣的。
-	$finalStr = "擴充擲骰：\n（";
+	$finalStr = "擴充擲骰（";
 	$inputStr = strtolower((string)$inputStr);
 	
 	if(preg_match ("/\d+b\d+/i", $inputStr) == false||
@@ -18,7 +18,7 @@ function bDice($inputStr){
 	$DiceToRoll = $matches[0];
 	error_log("擷取第一部分");
 	
-	$finalStr = $finalStr.$DiceToRoll."）\n→[";
+	$finalStr = $finalStr.$DiceToRoll."）：\n→[";
 	
 	if(preg_match ("/\d+b\d+/i", $DiceToRoll) == false||
 			preg_match ("/\Db|b\D/i", $DiceToRoll) != false||

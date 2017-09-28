@@ -25,22 +25,24 @@ function nomalDiceRoller($inputStr){
 	
 	//如果沒有非整數，就是複數擲骰。
 	if(preg_match ("/\D/", $mutiOrNot) == false)  {		
-		$finalStr= '複數擲骰：';
+		$finalStr= '複數擲骰';
 		if((int)$mutiOrNot>20) return '不支援20次以上的複數擲骰。';
 		
 		//拆開第二部份
 		$DiceToRoll  = explode(' ',$inputStr)[1];
 		
+		$finalStr= $finalStr."（".$DiceToRoll."）：";
+		
 		if(preg_match ("/\d+d\d+/i", $DiceToRoll) == false||
 			preg_match ("/\Dd|d\D/i", $DiceToRoll) != false||
-			preg_match ("/[^0-9dD+\-*\/()]/", $DiceToRoll) != false){
+			preg_match ("/[^0-9dD+\-*\/()=><]/", $DiceToRoll) != false){
 				
 			error_log("取出值不符合骰子格式");
 			return null;
 		}
 		
 		for ($i=1 ; $i<=$mutiOrNot ;$i++){
-			$finalStr = $finalStr."\n".$i.'# '.DiceCal($DiceToRoll)['eqStr'];
+			$finalStr = $finalStr."\n→".$i.'# '.DiceCal($DiceToRoll)['eqStr'];
 		}
 	
 		 //報錯，不解釋。
@@ -52,12 +54,12 @@ function nomalDiceRoller($inputStr){
 		$DiceToRoll = $mutiOrNot;
 		if(preg_match ("/\d+d\d+/i", $DiceToRoll) == false||
 			preg_match ("/\Dd|d\D/i", $DiceToRoll) != false||
-			preg_match ("/[^0-9dD+\-*\/()]/", $DiceToRoll) != false){
+			preg_match ("/[^0-9dD+\-*\/()=><]/", $DiceToRoll) != false){
 			error_log("取出值不符合骰子格式");
 			return null;
 		}
 	
-		$finalStr = "基本擲骰：\n".DiceCal($mutiOrNot)['eqStr'];
+		$finalStr = "基本擲骰（".$mutiOrNot."）：\n→".DiceCal($mutiOrNot)['eqStr'];
 	
 	}
 	
@@ -83,7 +85,7 @@ function DiceCal($inputStr){
   //再檢查一次
 	if(preg_match ("/\d+d\d+/i", $DiceToRoll) == false||
 		preg_match ("/\Dd|d\D/i", $DiceToRoll) != false||
-		preg_match ("/[^0-9dD+\-*\/()]/", $DiceToRoll) != false){
+		preg_match ("/[^0-9dD+\-*\/()=><]/", $DiceToRoll) != false){
 		error_log("取出值不符合骰子格式");
 		return null;
 	}

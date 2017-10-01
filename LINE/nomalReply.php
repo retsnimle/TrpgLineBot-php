@@ -152,6 +152,27 @@ function mobile($inputStr) {
       "type": "carousel",
       "columns": [
           {
+            "title": "《一般擲骰與擴充擲骰》",
+            "text": "基本的擲骰功能，可以多加嘗試。",
+            "actions": [
+                {
+                    "type": "message",
+                    "label": "基本擲骰範例：2D6+1D4",
+                    "text": "2D6+1D4"
+                },
+                {
+                    "type": "message",
+                    "label": "複數擲骰範例：6 3D6+1",
+                    "text": "6 3D6+1"
+                },
+                {
+                    "type": "message",
+                    "label": "骰池擲骰範例：8B6+2B10>5",
+                    "text": "8B6+2B10>5"
+                }
+            ]
+          },
+		  {
             "title": "《CoC7th 克蘇魯的呼喚》",
             "text": "本系統相關指令，關鍵字為 CC",
             "actions": [

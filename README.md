@@ -138,6 +138,7 @@ Step5：鏈接Line與Heroku
 | .\LINE\ | nomalReply.php | 非骰組的程式碼。主要是「關鍵字」觸發指令的內容。 |
 | .\LINE\Dice\ | 資料夾 | 這個資料夾裡面放的是各系統的骰組。 |
 | .\LINE\Dice\ | Dice_nomalDice.php | 這是一般通用擲骰。 |
+| .\LINE\Dice\ | Dice_extraDice.php | 這是擴充擲骰，包含骰池在內。未來可能會新增D66之類的吧。 |
 | .\LINE\Dice\ | Dice_CoC7th.php | 這是克蘇魯的呼喚（7版）的骰子。 |
 | .\LINE\Dice\ | Dice_pbta.php | 這是pbta系列系統的骰子。 |
 | .\LINE\ReplyJson\ | 資料夾 | 這裡是放像是說明書，或是梗圖關鍵字之類的地方。其實也可以外連，我個人推薦外連。放在這裡只是給大家看看範例的json長什麼樣子。只要符合格式就可以正確讀取喔。 |

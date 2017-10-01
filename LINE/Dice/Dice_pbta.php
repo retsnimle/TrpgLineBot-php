@@ -25,16 +25,17 @@ function pbta($inputStr){
   
   //開始算咯，你看我們用到DiceCal.eq了吧
 	$CalStr = DiceCal('2d6'.$bonus)['eq'];
-    
+    $finalStr="pbta擲骰（2D6".$bonus."）：\n→".$CalStr.'='.eval("return (String)$CalStr;")."\n→";
+	
 	
     if (eval("return (String)$CalStr;") >= 10){      
-      $finalStr="pbta擲骰（2D6".$bonus."）：\n".$CalStr.'='.eval("return (String)$CalStr;").'，成功！';
+      $finalStr=$finalStr.'成功！';
       }
     else if (eval("return (String)$CalStr;") <= 6){
-      $finalStr="pbta擲骰（2D6".$bonus."）：\n".$CalStr.'='.eval("return (String)$CalStr;").'，失敗。';
+      $finalStr=$finalStr.'失敗。';
       }    
     else {
-      $finalStr="pbta擲骰（2D6".$bonus."）：\n".$CalStr.'='.eval("return (String)$CalStr;").'，部分成功。';
+      $finalStr=$finalStr.'部分成功。';
       }
  
 	return buildTextMessage($finalStr);	

@@ -100,8 +100,14 @@ function DiceCal($inputStr){
   
     //計算算式
   $answer = eval("return $DiceToRoll;");
-  $equationStr= $DiceToRoll.' = '.$answer;
-  
+  if(gettype($answer) == "boolean"){
+	  if($answer == true){$answer ="true";}
+	  else{$answer ="false";}
+	  $equationStr= $DiceToRoll.'→'.$answer;
+	}  
+	else{  
+	$equationStr= $DiceToRoll.' = '.$answer;
+	}
   $Final =Array(
   'eq'=> $DiceToRoll,
   'eqStr'=>$equationStr

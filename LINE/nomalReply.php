@@ -152,7 +152,7 @@ function mobile($inputStr) {
       "type": "carousel",
       "columns": [
           {
-            "title": "《一般擲骰與擴充擲骰》",
+            "title": "《一般擲骰》",
             "text": "基本的擲骰功能，可以多加嘗試。",
             "actions": [
                 {
@@ -160,15 +160,36 @@ function mobile($inputStr) {
                     "label": "基本擲骰範例：2D6+1D4",
                     "text": "2D6+1D4"
                 },
+				{
+                    "type": "message",
+                    "label": "真假值判定範例：2D6>=6",
+                    "text": "2D6>=6"
+                },
                 {
                     "type": "message",
                     "label": "複數擲骰範例：6 3D6+1",
                     "text": "6 3D6+1"
+                }
+            ]
+          },
+          {
+            "title": "《擴充擲骰》",
+            "text": "骰池有關的擲骰，可混搭。中括號內是達成值加骰模式",
+            "actions": [
+                {
+                    "type": "message",
+                    "label": "基本範例：3B6+3B10",
+                    "text": "3B6+3B10"
                 },
                 {
                     "type": "message",
-                    "label": "骰池擲骰範例：8B6+2B10>5",
-                    "text": "8B6+2B10>5"
+                    "label": "一般達成值範例：5B6>=4",
+                    "text": "5B6>=4"
+                },
+                {
+                    "type": "message",
+                    "label": "達成值加骰範例：5B6[>2]",
+                    "text": "5B6[>2]"
                 }
             ]
           },

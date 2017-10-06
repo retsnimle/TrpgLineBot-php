@@ -18,12 +18,32 @@ function bDice($inputStr){
 	$DiceToRoll = $matches[0];
 	error_log("擷取第一部分");
 	
-	$finalStr = $finalStr.$DiceToRoll."）：\n→[";
+	$finalStr = $finalStr.$DiceToRoll."）：\n→";
+	
+	//處理加骰符號
+	preg_match ("/\[(.*?)]/i", $DiceToRoll , $matches);
+	$bonusEqra = $matches[0];
+	$DiceToRoll = preg_replace("/\[(.*?)]/i" , "" , $DiceToRoll);
+	$bonusEqra = preg_replace("/\[/" , "" , $bonusEqra);
+	$bonusEqra = preg_replace("/]/" , "" , $bonusEqra);
+		
+	if(preg_match ("/[^0-9=><]/i", $bonusEqra) != false){$bonusEqra='';}
+	if( stristr($bonusEqra,"=") != false && preg_match ("/>|</",$bonusEqra) == false){
+		$bonusEqra = preg_replace("/=/" , "==" , $bonusEqra,1);
+	}
+	if( preg_match ("/>|<|=/",$bonusEqra) == false && $bonusEqra != null){
+		$bonusEqra = "==".$bonusEqra;
+	}
+	
+	error_log("加骰值：".$bonusEqra);	
+	
+	
+	
 	
 	if(preg_match ("/\d+b\d+/i", $DiceToRoll) == false||
 			preg_match ("/\Db|b\D/i", $DiceToRoll) != false||
 			preg_match ("/[^0-9bB+\-*\/()=><]/", $DiceToRoll) != false){
-			error_log("取出值不符合骰子格式");
+			error_log("取出值不符合骰子格式：".$DiceToRoll);
 			return null;
 		}
 	
@@ -35,9 +55,44 @@ function bDice($inputStr){
 			if( stristr($equa,"=") != false && preg_match ("/>|</",$equa) == false){
 					$equa = preg_replace("/=/" , "==" , $equa,1);
 				}
+	}
+		
+		
+	//開始骰第一次
+	$countArr = rollBDice($DiceToRoll,$equa,$bonusEqra);
+	error_log("最後加骰值：".$countArr[2]);
+	$finalStr = $finalStr.$countArr[0];
+	$succesCum = $succesCum + $countArr[1];
+	
+	//準備第二次以上
+	while($countArr[3]!= 0) {
+		$finalStr = $finalStr."[加骰".$countArr[3]."次]";
+		$countArr = rollBDice($countArr[2],$equa,$bonusEqra);
+		$finalStr = $finalStr."\n→".$countArr[0];
+		$succesCum = $succesCum + $countArr[1];		
+	}
+	
+	
+	if($equa != null ||$bonusEqra != null){
+		$finalStr = $finalStr."\n→總成功數：".$succesCum ;		
 		}
 	
+	return buildTextMessage($finalStr);
+
+}
+
+
+//骰B骰用的
+function rollBDice($DiceToRoll,$equa,$bonusEqra){
+	$succesCum = 0;
+	$bouns = '';
+	$bounsCum = 0;
 	
+	if ($equa == null && $bonusEqra != null){
+		$equa = $bonusEqra;
+	}
+	
+	//$finalStr = $finalStr."[";
 	while(preg_match ("/\d+b\d+/i", $DiceToRoll ,$matches) != false) {
 		$tempMatch = (String)$matches[0];    
 	
@@ -49,13 +104,24 @@ function bDice($inputStr){
 		for ($i = 1; $i <= $diceNum; $i++) {
 			
 			$diceEnd = Dice($diceSid);
-			if ($equa != null){				
-				
-				error_log("$diceEnd"."$equa");			
-				$answer = eval("return $diceEnd.$equa;");
 			
+			//計算成功數
+			if ($equa != null){				
+				error_log("$diceEnd"."$equa");			
+				$answer = eval("return $diceEnd.$equa;");			
 				if($answer == true){$succesCum++;}
 			}
+			
+			//計算加骰條件
+			if ($bonusEqra != null){				
+				error_log("$diceEnd"."$equa");
+				$answer = eval("return $diceEnd.$bonusEqra;");			
+				if($answer == true){				
+				$bouns = $bouns."1b".$diceSid."+";	
+				$bounsCum++;
+				}
+			}		
+			
 			$finalStr = $finalStr.$diceEnd.'、';	
 			
 		}
@@ -63,12 +129,21 @@ function bDice($inputStr){
 		$DiceToRoll = preg_replace("/\d+b\d+/i" , 'Done' , $DiceToRoll,1);	
 	}
 	
+	$finalStr = chop($finalStr,'、');
+	$finalArr = explode('、',$finalStr);
+	rsort($finalArr);
+	
+	$finalStr = "[";
+	
+	foreach ($finalArr as $i){
+		$finalStr = $finalStr.$i."、";
+	}
+	
 	$finalStr = chop($finalStr,'、')."]";
 	
-	if($equa != null){
-		$finalStr = $finalStr."\n→成功數：".$succesCum ;		
-		}
+	$bouns = chop($bouns,'+');
 	
-	return buildTextMessage($finalStr);
-
+	return Array($finalStr,$succesCum,$bouns,$bounsCum);
 }
+
+

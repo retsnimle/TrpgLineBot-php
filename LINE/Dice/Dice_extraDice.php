@@ -64,12 +64,22 @@ function bDice($inputStr){
 	$finalStr = $finalStr.$countArr[0];
 	$succesCum = $succesCum + $countArr[1];
 	
+	$reDice = 0;
 	//準備第二次以上
 	while($countArr[3]!= 0) {
 		$finalStr = $finalStr."[加骰".$countArr[3]."次]";
 		$countArr = rollBDice($countArr[2],$equa,$bonusEqra);
 		$finalStr = $finalStr."\n→".$countArr[0];
-		$succesCum = $succesCum + $countArr[1];		
+		$succesCum = $succesCum + $countArr[1];	
+		
+		if($reDice>=100){
+			$finalStr = "迴圈執行數到達100，可能為無限迴圈，強制停止。";
+			$equa = null;
+			$bonusEqra = null;
+			break;}
+		
+		$reDice++;
+			
 	}
 	
 	
@@ -99,7 +109,8 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 		$diceNum = explode('b',$tempMatch)[0];
 		$diceSid = explode('b',$tempMatch)[1];
 		
-		if($diceNum >= 200 ){return buildTextMessage($finalStr."不支援200顆以上的擲骰。");}
+		if($diceNum >= 200 ){return Array("不支援200顆以上的擲骰。",0,null,0);}
+
 		
 		for ($i = 1; $i <= $diceNum; $i++) {
 			
@@ -107,14 +118,14 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 			
 			//計算成功數
 			if ($equa != null){				
-				error_log("$diceEnd"."$equa");			
+				//error_log("$diceEnd"."$equa");			
 				$answer = eval("return $diceEnd.$equa;");			
 				if($answer == true){$succesCum++;}
 			}
 			
 			//計算加骰條件
 			if ($bonusEqra != null){				
-				error_log("$diceEnd"."$equa");
+				//error_log("$diceEnd"."$equa");
 				$answer = eval("return $diceEnd.$bonusEqra;");			
 				if($answer == true){				
 				$bouns = $bouns."1b".$diceSid."+";	

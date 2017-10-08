@@ -121,17 +121,18 @@ function RollDice($inputStr){
   //先把inputStr變成字串（不知道為什麼非這樣不可）
   $comStr=strtolower((string)$inputStr);
   
-  //若是要把 3d6 變成 (2+1+4) ，那就先要有個 (
+  $finalArr = Array();
   $finalStr = '(';
   $diceNum = explode('d',$comStr)[0];
   $diceSid = explode('d',$comStr)[1];
   
-  //接下來就是看有幾d幾，就要骰幾次骰，像是 3d6 就要做 3 次 Dice(6)，還要補上加號
+  //接下來就是看有幾d幾，就要骰幾次骰，像是 3d6 就要做 3 次 Dice(6)
   for ($i = 1; $i <= $diceNum; $i++) {	  
-    $finalStr = $finalStr.Dice($diceSid).'+';
+	array_push($finalArr,Dice($diceSid));
+   
   }
-
-  //那這樣會多一個+號，所以要去掉，再補上 ) ，這樣就完成了。
-  $finalStr = chop($finalStr,'+').')';
+  
+  $finalStr = "(".implode("+",$finalArr).")";
+  
   return $finalStr;
 }

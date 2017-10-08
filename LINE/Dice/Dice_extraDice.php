@@ -49,6 +49,9 @@ function bDice($inputStr){
 	
 	$equa = null;
 	$succesCum = 0;
+	$bounsCum = 0;
+	$allAdd = 0;
+	$succesAdd = 0;
 	
 	if(preg_match ("/[><]?[><=]\d+$/", $DiceToRoll, $matches) != false){
 			$equa = $matches[0];
@@ -63,14 +66,20 @@ function bDice($inputStr){
 	error_log("最後加骰值：".$countArr[2]);
 	$finalStr = $finalStr.$countArr[0];
 	$succesCum = $succesCum + $countArr[1];
+	$bounsCum = $bounsCum + $countArr[3]; 
+	$allAdd = $allAdd + $countArr[4];
+	$succesAdd = $succesAdd + $countArr[5];
 	
 	$reDice = 0;
 	//準備第二次以上
 	while($countArr[3]!= 0) {
-		$finalStr = $finalStr."[加骰".$countArr[3]."次]";
+		$finalStr = $finalStr."（加骰".$countArr[3]."次）";
 		$countArr = rollBDice($countArr[2],$equa,$bonusEqra);
 		$finalStr = $finalStr."\n→".$countArr[0];
 		$succesCum = $succesCum + $countArr[1];	
+		$bounsCum = $bounsCum + $countArr[3];
+		$allAdd = $allAdd + $countArr[4];
+		$succesAdd = $succesAdd + $countArr[5];
 		
 		if($reDice>=100){
 			$finalStr = "迴圈執行數到達100，可能為無限迴圈，強制停止。";
@@ -81,12 +90,17 @@ function bDice($inputStr){
 		$reDice++;
 			
 	}
+	$finalStr = $finalStr."\n";
 	
-	
-	if($equa != null ||$bonusEqra != null){
-		$finalStr = $finalStr."\n→總成功數：".$succesCum ;		
+	if($equa != null ){
+		$finalStr = $finalStr."\n成功數（".$equa."）：".$succesCum ;
+		$finalStr = $finalStr."\n成功骰子總和：".$succesAdd ;
 		}
-	
+		
+	if($bonusEqra != null){
+		$finalStr = $finalStr."\n加骰數（".$bonusEqra."）：".$bounsCum ;		
+		}
+	$finalStr = $finalStr."\n所有骰子總和：".$allAdd ;
 	return buildTextMessage($finalStr);
 
 }
@@ -97,12 +111,18 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 	$succesCum = 0;
 	$bouns = '';
 	$bounsCum = 0;
+	$allAdd = 0;
+	$succesAdd = 0;
 	
+	/*
 	if ($equa == null && $bonusEqra != null){
 		$equa = $bonusEqra;
 	}
+	*/
 	
 	//$finalStr = $finalStr."[";
+	$finalArr = Array();
+	
 	while(preg_match ("/\d+b\d+/i", $DiceToRoll ,$matches) != false) {
 		$tempMatch = (String)$matches[0];    
 	
@@ -120,7 +140,10 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 			if ($equa != null){				
 				//error_log("$diceEnd"."$equa");			
 				$answer = eval("return $diceEnd.$equa;");			
-				if($answer == true){$succesCum++;}
+				if($answer == true){
+					$succesCum++;
+					$succesAdd = $succesAdd + $diceEnd;
+					}
 			}
 			
 			//計算加骰條件
@@ -133,28 +156,22 @@ function rollBDice($DiceToRoll,$equa,$bonusEqra){
 				}
 			}		
 			
-			$finalStr = $finalStr.$diceEnd.'、';	
+			array_push($finalArr,$diceEnd);
+			
+			$allAdd	= $allAdd + $diceEnd;
 			
 		}
 	
 		$DiceToRoll = preg_replace("/\d+b\d+/i" , 'Done' , $DiceToRoll,1);	
 	}
-	
-	$finalStr = chop($finalStr,'、');
-	$finalArr = explode('、',$finalStr);
+		
 	rsort($finalArr);
 	
-	$finalStr = "[";
-	
-	foreach ($finalArr as $i){
-		$finalStr = $finalStr.$i."、";
-	}
-	
-	$finalStr = chop($finalStr,'、')."]";
+	$finalStr = "[".implode("、",$finalArr)."]";
 	
 	$bouns = chop($bouns,'+');
 	
-	return Array($finalStr,$succesCum,$bouns,$bounsCum);
+	return Array($finalStr,$succesCum,$bouns,$bounsCum,$allAdd,$succesAdd);
 }
 
 

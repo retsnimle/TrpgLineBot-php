@@ -111,6 +111,72 @@ class LINEBotTiny
             error_log("Request failed: " . $response);
         }
     }
+	/*
+	public function replyMessage($replyToken, MessageBuilder $messageBuilder)
+    {
+        return $this->httpClient->post($this->endpointBase . '/v2/bot/message/reply', [
+            'replyToken' => $replyToken,
+            'messages' => $messageBuilder->buildMessage(),
+        ]);
+    }
+	
+	public function getProfile($userId)
+    {
+        return $this->httpClient->get($this->endpointBase . '/v2/bot/profile/' . urlencode($userId));
+    }*/
+	
+	public function getProfile($userId)
+    {	$header = array(
+            'Authorization: Bearer ' . $this->channelAccessToken ."\r\n",
+        );
+
+        $context = stream_context_create(array(
+            "http" => array(
+                "method" => "GET",
+                "header" => $header,               
+            ),
+        ));
+		$url='https://api.line.me/v2/bot/profile/'.urlencode($userId);
+        $response = file_get_contents($url, false, $context);
+		$response = json_decode($response,true);
+        return $response;
+    }
+	
+	public function getGroupProfile($groupId,$userId)
+    {	$header = array(
+            'Authorization: Bearer ' . $this->channelAccessToken ."\r\n",
+        );
+
+        $context = stream_context_create(array(
+            "http" => array(
+                "method" => "GET",
+                "header" => $header,               
+            ),
+        ));
+
+		$url='https://api.line.me/v2/bot/group/'.urlencode($groupId).'/member/'.urlencode($userId);
+        $response = file_get_contents($url, false, $context);
+		$response = json_decode($response,true);
+        return $response;
+    }
+	
+	public function getGroupIDs($groupId)
+    {	$header = array(
+            'Authorization: Bearer ' . $this->channelAccessToken ."\r\n",
+        );
+
+        $context = stream_context_create(array(
+            "http" => array(
+                "method" => "GET",
+                "header" => $header,               
+            ),
+        ));		
+		$url='https://api.line.me/v2/bot/group/'.$groupId.'/members/ids';
+        $response = file_get_contents($url, false, $context);
+		$response = json_decode($response,true);
+        return $response;
+    }
+	
 
     private function sign($body)
     {

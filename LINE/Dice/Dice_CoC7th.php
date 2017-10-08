@@ -113,8 +113,7 @@ function CoC7th($inputStr){
             else
               if(chack/5 < 50){$ReStr = $ReStr + "\n（若要求極限成功則為大失敗）";}
           }  
-		  
-		  
+	
 	if(stristr(strtolower($ReStr),"啊！大失敗") != false){
 		$fumbleImgArr =Array(
 			"https://i.imgur.com/ju9UQzA.png",
@@ -144,7 +143,6 @@ function CoC7th($inputStr){
 		
 		return $messages->send($replyArr);
 	}
-
 	
           return buildTextMessage($ReStr);	
 }

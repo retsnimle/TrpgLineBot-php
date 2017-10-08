@@ -22,7 +22,7 @@ require_once('./Dice/Dice_CoC7th.php');
 require_once('./Dice/Dice_nomalDice.php');
 require_once('./Dice/Dice_pbta.php');
 require_once('./Dice/Dice_extraDice.php');
-require_once('./Dice/Dice_testDice.php');
+require_once('./Dice/Dice_test.php');
 
 //主要的全域變數，只有簡易的API，覺得難過香菇
 //試著手動加入了getProfile的功能…不知道是否用得到

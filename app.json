@@ -14,15 +14,15 @@
       "description": "你的機器人的名字，同時也做為觸發關鍵字，必填。"
     },
     "MANUAL_URL": {
-      "description": "你的說明手冊放置的位置，預設值為(.\exampleJson\manual.json)。",
+      "description": "你的說明手冊放置的位置，預設值為(.\\exampleJson\\manual.json)。",
 	  "value": "default"
     },
     "TEXT_REPLY_URL": {
-      "description": "你的文字回應關鍵字放置的位置，預設值為(.\exampleJson\textReply.json)。",
+      "description": "你的文字回應關鍵字放置的位置，預設值為(.\\exampleJson\\textReply.json)。",
 	  "value": "default"
     },
     "IMGS_REPLY_URL": {
-      "description": "你的圖片回應放置的位置，預設值為(.\exampleJson\imgReply.json)。",
+      "description": "你的圖片回應放置的位置，預設值為(.\\exampleJson\\imgReply.json)。",
 	  "value": "default"
     }                
   }

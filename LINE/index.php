@@ -1,5 +1,4 @@
 <?php
-session_start();
 /**
  * Copyright 2016 LINE Corporation
  *
@@ -36,23 +35,6 @@ $yababangUrl = getenv('YABABANG_URL');
 
 $bot = new LINEBotTiny($channelAccessToken, $channelSecret);
 $userName = '你';
-
-if(isset($_SESSION['views'])){
-	$_SESSION['views']=$_SESSION['views']+1;
-}
-else{
-	$_SESSION['views']=1;
-}
-error_log("views=".$_SESSION['views']);
-
-
-if(isset($test)){
-	$test=$test+1;
-}
-else{
-	$test=1;
-}
-error_log("test=".$test);
 
 
 //建立文字訊息的函數

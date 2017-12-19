@@ -295,7 +295,7 @@ function ccCreate($inputStr){
         if ($EDURoll>$tempEDU) {
           $EDUplus = Dice(10);
           $ReStr = $ReStr.' → 成長'.$EDUplus.'點';
-          $tempEDU = $tempEDU.$EDUplus;
+          $tempEDU = $tempEDU+$EDUplus;
         }
         else{
           $ReStr = $ReStr.' → 沒有成長';       

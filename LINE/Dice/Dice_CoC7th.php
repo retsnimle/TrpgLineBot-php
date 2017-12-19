@@ -233,7 +233,7 @@ function ccCreate($inputStr){
         
     //這裡是不同年齡的資料
     $AdjustData = Array(
-      'old' => Array(15,20,40,50,60,70,80),
+      'old' => Array(15,20,40,50,60,70,80,90),
       'Debuff' => Array(5,0,5,10,20,40,80),
       'AppDebuff' => Array(0,0,5,10,15,20,25),
       'EDUinc' => Array(0,1,2,3,4,4,4)

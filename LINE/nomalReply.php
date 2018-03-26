@@ -91,7 +91,7 @@ function KeyWordReply($inputStr,$keyWord,$manualUrl,$textReplyUrl,$userName) {
                  '不要把這種東西交給'.$keyWord.'決定比較好吧');
 		$Answer = $rplyArr[Dice(count($rplyArr)-1)];
 		}
-    return buildTextMessage('我想想喔……我覺得，'.$Answer.'。');
+    return buildTextMessage('我想想喔……我覺得'.$Answer.'。');
 	}
 	else    
 	//以下是運勢功能
